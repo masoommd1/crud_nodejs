@@ -166,3 +166,86 @@ app.listen(8080,()=>{
     dbconnect();
     console.log("server is started");
 })
+
+// update prodcuts
+
+
+app.put('/product/update/:id', async (req, res) => {
+    //to get value of id from endpoints /product/update/:id
+    const { id } = req.params;
+
+   
+    const updateData = req.body;
+
+    try {
+        const updatedProduct = await Product.findByIdAndUpdate(id, updateData);
+
+        if (!updatedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.json(updatedProduct);
+    } catch (error) {
+        res.status(500).json({ message: 'Error updating product', error: error.message });
+    }
+});
+
+
+// update users
+
+app.put('/user/update/:id', async(req,res) => {
+
+    const {id} = req.params;
+
+    const updateUsers = req.body;
+    
+    try {
+        const updateUsersData = await Users.findByIdAndUpdate(id,updateUsers);
+
+        if(!updateUsersData){
+           return res.status(404).json({message:"user not found"});
+        }
+        
+        res.json(updateUsersData)
+    } catch (err) {
+        res.send(500).json({msg:"can't update products",err})
+    }
+})
+
+
+// delete product 
+
+app.delete('/product/delete/:id', async (req, res) => {
+    const { id } = req.params;
+
+    try {
+        const deletedProduct = await Product.findByIdAndDelete(id);
+
+        if (!deletedProduct) {
+            return res.status(404).json({ message: 'Product not found' });
+        }
+
+        res.json({ message: 'Product deleted successfully', product: deletedProduct });
+    } catch (error) {
+        res.status(500).json({ message: 'Error deleting product', error: error.message });
+    }
+});
+
+
+// delete users
+app.delete('/user/delete/:id', async (req,res)=>{
+    
+    const {id} = req.params;
+
+    try {
+        const deleteUser = await Users.findByIdAndDelete(id);
+
+        if(!deleteUser){
+           return res.status(404).json({message: "product not found"});
+        }
+
+        res.json({message : 'users deleted succesfully', Users:deleteUser });
+    } catch (error) {
+        res.status(500).json({message:"error deleting users"});
+    }
+})
