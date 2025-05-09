@@ -1,0 +1,25 @@
+{
+  "name": "crud_nodejs",
+  "version": "1.0.0",
+  "description": "npm init -y  npm i express nodemon mongoose",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/masoommd1/crud_nodejs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/masoommd1/crud_nodejs/issues"
+  },
+  "homepage": "https://github.com/masoommd1/crud_nodejs#readme",
+  "dependencies": {
+    "express": "^5.1.0",
+    "mongoose": "^8.14.2",
+    "nodemon": "^3.1.10"
+  }
+}
